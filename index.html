@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Trends</title>
+</head>
+<body>
+    <h1>Get Top Fashion Trends</h1>
+    <button id="get-trends">Get Trends</button>
+    <div id="trends"></div>
+
+    <script>
+        document.getElementById('get-trends').addEventListener('click', async () => {
+            const response = await fetch('/get-trends', { method: 'POST' });
+            const data = await response.json();
+            
+            if (response.ok) {
+                document.getElementById('trends').innerText = data.trends;
+            } else {
+                document.getElementById('trends').innerText = 'Error: ' + data.error;
+            }
+        });
+    </script>
+</body>
+</html>
